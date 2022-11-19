@@ -21,14 +21,21 @@ pauseButton.addEventListener("click",()=>{
         clearInterval(timeInterval);
         isPaused = true;
     }
-})
+});
+
+stopButton.addEventListener("click",()=>{
+    clearInterval(timeInterval);
+    updateTime(interval);
+    gap = interval;
+});
+
 //functions
-const updateTime= ()=>timeLine.innerHTML=String(Math.trunc(gap/minute)).padStart(2,"0")+":"+String(gap%minute/second).padStart(2,"0");
-updateTime();
+const updateTime= (time)=>timeLine.innerHTML=String(Math.trunc(time/minute)).padStart(2,"0")+":"+String(time%minute/second).padStart(2,"0");
+updateTime(gap);
 function tick(){
     gap-=1000;
     console.log(String(gap%minute));
-    updateTime();
+    updateTime(gap);
 }
 //if(!isPaused){
 //    setInterval(tick,1000);
