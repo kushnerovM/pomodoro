@@ -6,9 +6,45 @@
     font-family: 'Sono', sans-serif;
     font-weight: 500;
 }
+
 body {
     display:flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-color: #B7B5E4;
+}
+
+#container{
+    background-color: #1E1E24;
+    width: 30%;
+    height: 30vh;
+    /*border: 3px solid #E8998D;*/
+    border-radius: 20px;
+    color: white;
+    font-size: 30px;
+    display:flex;
+    align-items:center;
+    align-content: center;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+#time-line{
+    width:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+.time-button {
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: #A4C2A5;
+    /*text-shadow: 0 0  5px #517664;*/
+    text-shadow: 0 0  5px #0F7173;
+    width: 28%;
+    min-height:30px;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 7px;
+    cursor: pointer;
 }
