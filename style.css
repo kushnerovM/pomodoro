@@ -21,7 +21,7 @@ body {
     height: 30vh;
     /*border: 3px solid #E8998D;*/
     border-radius: 20px;
-    color: white;
+    color: #fff;
     font-size: 30px;
     display:flex;
     align-items:center;
@@ -29,11 +29,13 @@ body {
     justify-content:space-evenly;
     flex-wrap: wrap;
 }
+
 #time-line{
     width:100%;
     font-size: 2.5em;
     text-align: center;
 }
+
 .time-button {
     border: none;
     font: inherit;
@@ -48,6 +50,7 @@ body {
     border-radius: 7px;
     cursor: pointer;
 }
+
 #start{
     width:40%;
     margin: 2px 15% 2px 15%;
@@ -56,6 +59,22 @@ body {
     font-size: 1,6em;
     display:block;
 }
+
 #pause,#stop{
     display:none;
+}
+
+#progress-bar{
+    width: 90%;
+    height:10px;
+    border-radius:5px;
+    background-color: #8f8f8f;
+    transition: 0.3s linear;
+    overflow: hidden;
+}
+#current-progress{
+    width: 10%;
+    height: inherit;
+    border-radius: 5px 0 0 5px;
+    background-color: #3EE08C;
 }
