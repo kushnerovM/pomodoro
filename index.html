@@ -6,6 +6,24 @@
     <title>pomodoro</title>
 </head>
 <body>
+    <form id="settings">
+        <div class="form-control">
+            <label for="session-count">session count</label>
+            <input type="text" id="session-count">
+            <div class="error">поле не заполнено</div>
+        </div>
+        <div class="form-control">
+            <label for="session-duration">session duration</label>
+            <input type="text" id="session-duration">
+            <div class="error">поле не заполнено</div>
+        </div>
+        <div class="form-control">
+            <label for="break-duration">break duration</label>
+            <input type="text" id="break-duration">
+            <div class="error">поле не заполнено</div>
+        </div>
+    </form>
+
     <div id="container">
         <div id="progress-bar">
             <div id="current-progress"></div>

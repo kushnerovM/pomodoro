@@ -11,6 +11,7 @@ body {
     display:flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 100vh;
     background-color: #B7B5E4;
 }
@@ -72,9 +73,23 @@ body {
     transition: 0.3s linear;
     overflow: hidden;
 }
+
 #current-progress{
     width: 10%;
     height: inherit;
     border-radius: 5px 0 0 5px;
     background-color: #3EE08C;
+}
+
+#settings{
+    border:3px solid white;
+    border-radius: 15px;
+    min-height: 30vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.form-control{
+    display: flex;
+    flex-direction: column;
 }
