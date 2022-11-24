@@ -1,13 +1,18 @@
 //variables
-
 const second = 1000;
 const minute = second*60;
 let isPaused = false;
 let timeInterval;
+
 //time-interval
 let interval = 45*minute;
 let gap = interval;
 
+//multi - interval functional
+let sessionCount=6;
+const sessionDuration=45;
+const breakDuration =10;
+let current =0;
 //selectors
 
 const timeLine = document.querySelector("#time-line");

@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>pomodoro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <form id="settings">
+        <button class="close-button"><i class="fa-solid fa-xmark"></i></button>
         <div class="form-control">
             <label for="session-count">session count</label>
-            <input type="text" id="session-count">
-            <div class="error">поле не заполнено</div>
+            <input type="number" id="session-count" min="1" max="12" value="6">
+            <div class="error">number between 1 and 10</div>
         </div>
         <div class="form-control">
             <label for="session-duration">session duration</label>
-            <input type="text" id="session-duration">
-            <div class="error">поле не заполнено</div>
+            <input type="number" id="session-duration" min="1" max="600" value="45">
+            <div class="error">number between 1 and 600</div>
         </div>
         <div class="form-control">
             <label for="break-duration">break duration</label>
-            <input type="text" id="break-duration">
-            <div class="error">поле не заполнено</div>
+            <input type="number" id="break-duration" min="1" max="600" value="10">
+            <div class="error">number between 1 and 600</div>
         </div>
+        <button id="ok" class="time-button">ok</button>
     </form>
 
     <div id="container">
+        <button class="gear-button"><i class="fa-solid fa-gear"></i></button>
         <div id="progress-bar">
             <div id="current-progress"></div>
         </div>
