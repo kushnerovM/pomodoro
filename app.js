@@ -4,22 +4,24 @@ const minute = second*60;
 let isPaused = false;
 let timeInterval;
 
+//multi-interval functional
+let sessionCount = 6;
+let sessionRemain=sessionCount;
+const sessionDuration=2;
+const breakDuration =1;
+let isSession = true;
 //time-interval
-let interval = 45*minute;
+let interval = sessionDuration*minute;
 let gap = interval;
 
-//multi - interval functional
-let sessionCount=6;
-const sessionDuration=45;
-const breakDuration =10;
-let current =0;
 //selectors
-
 const timeLine = document.querySelector("#time-line");
 const pauseButton = document.querySelector("#pause");
 const stopButton = document.querySelector("#stop");
 const startButton = document.querySelector("#start");
 const progressBar = document.querySelector("#current-progress");
+const caption = document.querySelector("#caption");
+
 //event listners
 
 //pause/resume
@@ -78,13 +80,27 @@ startButton.addEventListener("click",()=>{
 function updateTime(time){
     timeLine.innerHTML=String(Math.trunc(time/minute)).padStart(2,"0")+":"+String(time%minute/second).padStart(2,"0");
 }
-
 function tick(){
-    gap-=1000;
     document.querySelector("#progress-bar").style.backgroundColor=(gap/1000)%2?"#B8B8B8":"#8F8F8F";
     progressBar.style.width=`${100-((gap*100)/interval)}%`;
-    console.log(100-((gap*100)/interval));
+    console.log(gap);
     updateTime(gap);
+    gap-=1000;
+    if(gap<0){
+        if(isSession){
+            sessionRemain--;
+            isSession=false;
+            interval=breakDuration*minute;
+            gap=interval;
+        } else{
+            isSession=true;
+            interval=sessionDuration*minute;
+            gap=interval;
+        }
+        caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session from ${sessionCount}`:"Break time";
+    }
 }
 
 updateTime(gap);
+caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session from ${sessionCount}`:"Break time";
+gap-=1000;
