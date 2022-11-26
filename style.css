@@ -14,6 +14,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #B7B5E4;
+    font-size: 30px;
 }
 
 #container{
@@ -22,7 +23,6 @@ body {
     min-height: 35vh;
     border-radius: 20px;
     color: #fff;
-    font-size: 30px;
     display:flex;
     align-items:center;
     align-content: center;
@@ -39,19 +39,59 @@ body {
     text-align: center;
 }
 
+.button-container{
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .time-button {
-    border: none;
+    border: 2px solid #A4C2A5;
+    border-bottom: 5px solid #0F7173;
     font: inherit;
     color: inherit;
     justify-self: space-around;
     background-color: #A4C2A5;
     text-shadow: 0 0  5px #0F7173;
-    width: 28%;
+    color:#fff;
+    min-width: 28%;
     min-height:30px;
     padding: 5px;
     margin: 2px;
     border-radius: 7px;
     cursor: pointer;
+    transition:0.3s linear;
+}
+
+.time-button:hover{
+    background-color: #fff;
+    color:#A4C2A5;
+    text-shadow: none;
+}
+
+#stop{
+    border: 2px solid #F64740;
+    border-bottom: 5px solid #95190c;
+    background-color: #F64740 ;
+    text-shadow: none;
+}
+
+#stop:hover{
+    background-color: #fff;
+    color: #F64740;
+}
+
+#pause{
+    background-color: #fbf361;
+    text-shadow: 0 0  5px #e8af03;
+    border: 2px solid #ffce5c;
+    border-bottom: 5px solid #ffbf00;
+}
+
+#pause:hover{
+    background-color: #fff;
+    color:#ffbf00;
+    text-shadow: none;
 }
 
 #start{
@@ -86,7 +126,6 @@ body {
     width: 30%;
     min-height: 45vh;
     border-radius: 20px;
-    font-size: 30px;
     padding:1.5%;
     background-color: #fff;
     display:flex;
@@ -109,7 +148,7 @@ body {
     align-self: flex-end;
     cursor: pointer;
     color:#fff;
-    font-size: 1.4em;
+    font-size: 1.3em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,7 +179,6 @@ body {
 }
 
 #ok{
-    color:#fff;
     align-self: center;
 }
 
