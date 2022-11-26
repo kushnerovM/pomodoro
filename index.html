@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div id="filler">
     <form id="settings">
-        <button class="close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button class="close-button" type="button"><i class="fa-solid fa-xmark"></i></button>
         <div class="form-control">
             <label for="session-count">session count</label>
             <input type="number" id="session-count" min="1" max="12" value="6">
@@ -26,6 +27,7 @@
         </div>
         <button id="ok" class="time-button">ok</button>
     </form>
+    </div>
     <h3 id="caption"></h3>
     <div id="container">
         <button class="gear-button"><i class="fa-solid fa-gear"></i></button>
@@ -35,7 +37,7 @@
         <h1 id="time-line">00:00</h1>
         <button id="start" class="time-button">start</button>
         <button id="pause" class="time-button">pause</button>
-        <button id="stop" class="time-button">stop</button>
+        <button id="stop" class="time-button">reset</button>
         <script src="app.js"></script>
     </div>
 </body>
