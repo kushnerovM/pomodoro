@@ -210,3 +210,40 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
+@media screen and (max-width: 1200px) {
+    #container{
+        width:40%;
+    }
+    #settings{
+        width:40%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    #container{
+        width:50%;
+    }
+    #settings{
+        width:50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #container{
+        width:60%;
+    }
+    #settings{
+        width:60%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #container{
+        width:80%;
+    }
+    #settings{
+        width:80%;
+    }
+}
