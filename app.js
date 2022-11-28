@@ -50,14 +50,15 @@ submitButton.addEventListener("click",(event)=>{
     if(!test(Break,errors[2])){valid=false;}
     if(valid){
         sessionCount=+Count.value;
-        sessionRemain=sessionCount
+        sessionRemain=sessionCount;
         sessionDuration=+Duration.value;
         breakDuration=+Break.value;
         interval = sessionDuration*minute;
         gap = interval;
         isSession = true;
         updateTime(gap);
-        caption.innerHTML=`${(sessionCount-sessionRemain)+1} session from ${sessionCount}`;
+        gap-=1000;
+        caption.innerHTML="";
         //clearing everething       
         clearInterval(timeInterval);
         stopButton.style.display="none";
@@ -92,13 +93,30 @@ pauseButton.addEventListener("click",()=>{
 });
 
 //stop
-stopButton.addEventListener("click",stop);
+stopButton.addEventListener("click",  ()=>{
+    clearInterval(timeInterval);
+    caption.innerHTML="";
+    // set current time-line time to default value
+    updateTime(interval);
+    stopButton.style.display="none";
+    pauseButton.style.display="none";
+    gap = interval-1000;
+    //pause reset if it was set
+    if(isPaused){
+        pauseButton.textContent="pause";
+        isPaused = false;
+    }
+    //progress bar configuring
+    progressBar.style.width=`0%`;
+        startButton.style.display="block";
+});
 
 //start
 startButton.addEventListener("click",()=>{
     //progress bar configuring
     progressBar.style.backgroundColor="#3EE08C";
     timeInterval = setInterval(tick,1000);
+    caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session of ${sessionCount}`:"Break time";
     startButton.style.display="none";
     stopButton.style.display="block";
     pauseButton.style.display="block";
@@ -112,11 +130,9 @@ function updateTime(time){
 
 function tick(){
     document.querySelector("#progress-bar").style.backgroundColor=(gap/1000)%2?"#B8B8B8":"#8F8F8F";
-    progressBar.style.width=`${100-((gap*100)/interval)}%`;
-    //console.log(gap);
-    updateTime(gap);
-    gap-=1000;
-    if(gap<0){
+    
+
+    if(gap===0){
         if(isSession){
             sessionRemain--;
             isSession=false;
@@ -127,8 +143,13 @@ function tick(){
             interval=sessionDuration*minute;
             gap=interval;
         }
-        caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session from ${sessionCount}`:"Break time";
+        caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session of ${sessionCount}`:"Break time";
     }
+
+    
+    updateTime(gap);
+    progressBar.style.width=`${100-((gap*100)/interval)}%`;
+    gap-=1000;
 }
 
 function test(input,error){
@@ -150,24 +171,5 @@ function test(input,error){
     return true
 }
 
-function stop (){
-    clearInterval(timeInterval);
-    // set cirrent time-line time to default value
-    updateTime(interval);
-    stopButton.style.display="none";
-    pauseButton.style.display="none";
-    gap = interval;
-    //pause reset if it was set
-    if(isPaused){
-        pauseButton.textContent="pause";
-        isPaused = false;
-    }
-    //progress bar configuring
-    progressBar.style.width=`0%`;
-    console.log("before");
-        startButton.style.display="block";
-}
-
 updateTime(gap);
-caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session from ${sessionCount}`:"Break time";
 gap-=1000;
