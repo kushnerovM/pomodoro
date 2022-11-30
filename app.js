@@ -5,10 +5,22 @@ let isPaused = false;
 let timeInterval;
 
 //multi-interval functional
-let sessionCount = 6;
-let sessionRemain=sessionCount;
-let sessionDuration=45;
-let breakDuration =10;
+let sessionCount;
+let sessionRemain;
+let sessionDuration;
+let breakDuration;
+if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration")&&localStorage.getItem("breakDuration")){
+    sessionCount = localStorage.getItem("sessionCount");
+    sessionRemain=sessionCount;
+    sessionDuration=localStorage.getItem("sessionDuration");
+    breakDuration=localStorage.getItem("breakDuration");
+} else{
+    sessionCount = 6;
+    sessionRemain=sessionCount;
+    sessionDuration=45;
+    breakDuration =10;
+}
+
 let isSession = true;
 //time-interval
 let interval = sessionDuration*minute;
@@ -49,6 +61,9 @@ submitButton.addEventListener("click",(event)=>{
     if(!test(Duration,errors[1])){valid=false;}
     if(!test(Break,errors[2])){valid=false;}
     if(valid){
+        localStorage.setItem("sessionCount",Count.value);
+        localStorage.setItem("breakDuration",Break.value);
+        localStorage.setItem("sessionDuration",Duration.value);
         sessionCount=+Count.value;
         sessionRemain=sessionCount;
         sessionDuration=+Duration.value;
