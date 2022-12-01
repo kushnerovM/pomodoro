@@ -3,7 +3,7 @@ const second = 1000;
 const minute = second*60;
 let isPaused = false;
 let timeInterval;
-
+let alarm = new Audio("session-start.mp3");
 //multi-interval functional
 let sessionCount;
 let sessionRemain;
@@ -151,6 +151,7 @@ function tick(){
     
     if(gap===0){
         if(isSession){
+            alarm = new Audio("session-end.mp3");
             sessionRemain--;
             //all-session final handling
             if(sessionRemain===0){
@@ -170,6 +171,8 @@ function tick(){
                 startButton.style.display="block";
                 caption.innerHTML="sessions complited";
                 updateTime(0);
+                alarm= new Audio("finish.mp3");
+                alarm.play();
                 return;
             }
             isSession=false;
@@ -179,8 +182,10 @@ function tick(){
             isSession=true;
             interval=sessionDuration*minute;
             gap=interval;
+            alarm = new Audio("session-start.mp3");
         }
         caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session of ${sessionCount}`:"Break time";
+        alarm.play();
     }
     
     updateTime(gap);
