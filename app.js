@@ -21,6 +21,11 @@ if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration"
     breakDuration =10;
 }
 
+//setting values of the settings form controls
+document.querySelector("#session-count").value=sessionCount;
+document.querySelector("#session-duration").value=sessionDuration;
+document.querySelector("#break-duration").value=breakDuration;
+
 let isSession = true;
 //time-interval
 let interval = sessionDuration*minute;
