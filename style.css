@@ -142,7 +142,7 @@ body {
     width:100%;
 }
 
-.gear-button, .close-button{
+.gear-button, .close-button, .volume-button{
     border:none;
     background: none;
     align-self: flex-end;
@@ -168,13 +168,13 @@ body {
     animation: rotate 2s infinite linear;
 }
 
-.close-button{
+.close-button, .volume-button{
     color:#1E1E24;
     align-self: flex-end;
     transition: opacity 0.2s linear;
 }
 
-.close-button:hover{
+.close-button:hover,.volume-button:hover{
     opacity: 0.6;
 }
 
@@ -209,6 +209,11 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
+}
+
+#settings>.button-container{
+    justify-content: flex-end;
+    gap:15px;
 }
 
 

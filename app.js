@@ -2,6 +2,7 @@
 const second = 1000;
 const minute = second*60;
 let isPaused = false;
+let isMuted = false;
 let timeInterval;
 let alarm = new Audio("session-start.mp3");
 //multi-interval functional
@@ -40,8 +41,15 @@ const caption = document.querySelector("#caption");
 const closeButton = document.querySelector(".close-button");
 const gearButton = document.querySelector(".gear-button");
 const submitButton = document.querySelector("#ok");
+const volumeButton = document.querySelector(".volume-button");
 
 //event listners
+
+//on/off volume
+volumeButton.addEventListener("click",()=>{
+    volumeButton.innerHTML=isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
+    isMuted=isMuted?false:true;
+});
 
 //close settings window
 closeButton.addEventListener("click",()=>{
@@ -177,7 +185,9 @@ function tick(){
                 caption.innerHTML="sessions complited";
                 updateTime(0);
                 alarm= new Audio("finish.mp3");
-                alarm.play();
+                if(!isMuted){
+                    alarm.play();
+                }
                 return;
             }
             isSession=false;
@@ -190,7 +200,9 @@ function tick(){
             alarm = new Audio("session-start.mp3");
         }
         caption.innerHTML=isSession?`${(sessionCount-sessionRemain)+1} session of ${sessionCount}`:"Break time";
-        alarm.play();
+        if(!isMuted){
+            alarm.play();
+        }
     }
     
     updateTime(gap);
