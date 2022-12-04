@@ -10,11 +10,13 @@ let sessionCount;
 let sessionRemain;
 let sessionDuration;
 let breakDuration;
-if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration")&&localStorage.getItem("breakDuration")){
+if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration")&&localStorage.getItem("breakDuration")&&localStorage.getItem("volume")!==undefined){
     sessionCount = localStorage.getItem("sessionCount");
     sessionRemain=sessionCount;
     sessionDuration=localStorage.getItem("sessionDuration");
     breakDuration=localStorage.getItem("breakDuration");
+    isMuted=!!localStorage.getItem("volume");
+    console.log(`${isMuted} ${typeof isMuted}`);
 } else{
     sessionCount = 6;
     sessionRemain=sessionCount;
@@ -58,12 +60,17 @@ closeButton.addEventListener("click",()=>{
 
 //open settings window
 gearButton.addEventListener("click",()=>{
+    volumeButton.innerHTML=!isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
+    console.log(`${isMuted} ${volumeButton.innerHTML}`)
     document.querySelector("#filler").style.display="flex";
 });
 
 //submitting new time settings
 submitButton.addEventListener("click",(event)=>{
     event.preventDefault();
+    console.log(isMuted);
+    localStorage.setItem("volume",isMuted);
+    volumeButton.innerHTML=!isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
     const Count = document.querySelector("#session-count");
     const Duration = document.querySelector("#session-duration");
     const Break = document.querySelector("#break-duration");
@@ -228,6 +235,6 @@ function test(input,error){
     }
     return true
 }
-
+console.log(isMuted);
 updateTime(gap);
 gap-=1000;
