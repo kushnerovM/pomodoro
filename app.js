@@ -65,6 +65,11 @@ closeButton.addEventListener("click",()=>{
 //open settings window
 gearButton.addEventListener("click",()=>{
     volumeButton.innerHTML=!isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
+    //setting values of the settings form controls
+    document.querySelector("#session-count").value=sessionCount;
+    document.querySelector("#session-duration").value=sessionDuration;
+    document.querySelector("#break-duration").value=breakDuration;
+    document.querySelectorAll(".error").forEach(n=>n.style.display="none");
     document.querySelector("#filler").style.display="flex";
 });
 
