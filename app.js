@@ -3,20 +3,23 @@ const second = 1000;
 const minute = second*60;
 let isPaused = false;
 let isMuted = false;
+let isSession = true;
 let timeInterval;
 let alarm = new Audio("session-start.mp3");
+
 //multi-interval functional
 let sessionCount;
 let sessionRemain;
 let sessionDuration;
 let breakDuration;
-if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration")&&localStorage.getItem("breakDuration")&&localStorage.getItem("volume")!==undefined){
+
+//stored values fetching
+if (localStorage.getItem("sessionCount")&&localStorage.getItem("sessionDuration")&&localStorage.getItem("breakDuration")&&localStorage.getItem("volume")!==null){
     sessionCount = localStorage.getItem("sessionCount");
     sessionRemain=sessionCount;
     sessionDuration=localStorage.getItem("sessionDuration");
     breakDuration=localStorage.getItem("breakDuration");
-    isMuted=!!localStorage.getItem("volume");
-    console.log(`${isMuted} ${typeof isMuted}`);
+    isMuted=localStorage.getItem("volume")==="true";
 } else{
     sessionCount = 6;
     sessionRemain=sessionCount;
@@ -29,10 +32,10 @@ document.querySelector("#session-count").value=sessionCount;
 document.querySelector("#session-duration").value=sessionDuration;
 document.querySelector("#break-duration").value=breakDuration;
 
-let isSession = true;
 //time-interval
 let interval = sessionDuration*minute;
 let gap = interval;
+
 //selectors
 const timeLine = document.querySelector("#time-line");
 const pauseButton = document.querySelector("#pause");
@@ -51,6 +54,7 @@ const volumeButton = document.querySelector(".volume-button");
 volumeButton.addEventListener("click",()=>{
     volumeButton.innerHTML=isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
     isMuted=isMuted?false:true;
+    localStorage.setItem("volume",isMuted);
 });
 
 //close settings window
@@ -61,16 +65,12 @@ closeButton.addEventListener("click",()=>{
 //open settings window
 gearButton.addEventListener("click",()=>{
     volumeButton.innerHTML=!isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
-    console.log(`${isMuted} ${volumeButton.innerHTML}`)
     document.querySelector("#filler").style.display="flex";
 });
 
 //submitting new time settings
 submitButton.addEventListener("click",(event)=>{
     event.preventDefault();
-    console.log(isMuted);
-    localStorage.setItem("volume",isMuted);
-    volumeButton.innerHTML=!isMuted?'<i class="fa-solid fa-volume-off"></i>':'<i class="fa-solid fa-volume-xmark"></i>';
     const Count = document.querySelector("#session-count");
     const Duration = document.querySelector("#session-duration");
     const Break = document.querySelector("#break-duration");
@@ -235,6 +235,5 @@ function test(input,error){
     }
     return true
 }
-console.log(isMuted);
 updateTime(gap);
 gap-=1000;
